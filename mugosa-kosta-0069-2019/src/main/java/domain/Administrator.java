@@ -133,18 +133,39 @@ public class Administrator extends AbstractDomainObject {
     public String toString() {
         return ime + " " + prezime;
     }
+    /**
+     * Vraca String koji sadrzi naziv tabele za klasu Administrator.
+     * @return naziv tabele kao String za klasu Administrator.
+     */
+
     @Override
     public String nazivTabele() {
         return " administrator ";
     }
+    /**
+     * Vraca String koji sadrzi alijas tabele Administrator.
+     * @return alijas tabele kao String za klasu Administrator koji je karakter a.
+     */
+
     @Override
     public String alijas() {
         return " a ";
     }
+    /**
+     * Vraca String koji sadrzi JOIN klauzulu. Za klasu Administrator ne radimo
+     * povezivanje sa drugim tabelama pa je String prazan.
+     * @return prazan String
+     */
     @Override
     public String join() {
         return "";
     }
+    /**
+     * Vraca listu sa elementima klase Administrator.
+     * @param rs skup rezultata koje vraca SELECT upit.
+     * @return lista sa elementima klase Administrator
+     * @throws SQLException ako je doslo do greske prilikom izvrsavanja SELECT upita
+     */
 
     @Override
     public ArrayList<AbstractDomainObject> vratiListu(ResultSet rs) throws SQLException {
@@ -161,28 +182,50 @@ public class Administrator extends AbstractDomainObject {
         rs.close();
         return lista;
     }
-
+    /**
+     * Vraca String sa imenima kolona za INSERT upit. U ovom slucaju su to kolone
+     * koje odgovaraju svim atributima ime, prezime, username i password.
+     * @return imena kolona za INSERT upit kao String
+     */
     @Override
     public String koloneZaInsert() {
         return " (Ime, Prezime, Username, Password) ";
     }
-
+    /**
+     * Vraca String koji sadrzi vrijednost za primarni kljuc klase Igrac. U ovom
+     * slucaju je to identifikator administratora.
+     * @return id administratora kao String.
+     */
     @Override
     public String vrednostZaPrimarniKljuc() {
         return " AdministratorID = " + administratorID;
     }
-
+    /**
+     * Vraca String sa vrijednostima kolona za INSERT upit. Za administratora to su 
+     * svi njegovi atributi osim identifikatora.
+     * @return String popunjen svim atributima administratora osim id-ja.
+     */
     @Override
     public String vrednostiZaInsert() {
         return "'" + ime + "', '" + prezime + "', "
                 + "'" + username + "', '" + password + "'";
     }
+    /**
+     * Vraca String sa vrijednostima kolona za UPDATE upit. Za administratora to su 
+     * svi njegovi atributi osim identifikatora.
+     * @return String popunjen svim atributima administratora osim id-ja.
+     */
 
     @Override
     public String vrednostiZaUpdate() {
         return " Ime = '" + ime + "', Prezime = '" + prezime + "', "
                 + "Username = '" + username + "', Password = '" + password + "' ";
     }
+    /**
+     * Vraca String sa WHERE klauzulom. S obzirom da se za tabelu Administrator nikada
+     * ne radi WHERE String je prazan.
+     * @return prazan String.
+     */
 
     @Override
     public String uslov() {

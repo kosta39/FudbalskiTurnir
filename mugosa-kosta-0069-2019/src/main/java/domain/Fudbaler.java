@@ -62,21 +62,40 @@ public class Fudbaler extends AbstractDomainObject {
      */
     public Fudbaler() {
     }
+    /**
+     * Vraca String koji sadrzi naziv tabele za klasu Fudbaler.
+     * @return naziv tabele kao String za klasu Fudbaler.
+     */
 
     @Override
     public String nazivTabele() {
         return " Fudbaler ";
     }
+    /**
+     * Vraca String koji sadrzi alijas tabele Fudbaler.
+     * @return alijas tabele kao String za klasu Fudbaler koji je karakter f.
+     */
 
     @Override
     public String alijas() {
         return " f ";
     }
+    /**
+     * Vraca String koji sadrzi JOIN klauzulu. Tabelu Fudbaler ne povezujemo ni sa
+     * jednom drugom pa je kod nje String prazan.
+     * @return prazan String.
+     */
 
     @Override
     public String join() {
         return "";
     }
+    /**
+     * Vraca listu sa elementima klase Fudbaler.
+     * @param rs skup rezultata koje vraca SELECT upit.
+     * @return lista sa elementima klase Fudbaler
+     * @throws SQLException ako je doslo do greske prilikom izvrsavanja SELECT upita
+     */
 
     @Override
     public ArrayList<AbstractDomainObject> vratiListu(ResultSet rs) throws SQLException {
@@ -93,26 +112,51 @@ public class Fudbaler extends AbstractDomainObject {
         rs.close();
         return lista;
     }
-
+    /**
+     * Vraca String sa imenima kolona za INSERT upit. U ovom slucaju se nikad 
+     * ne radi insert za tabelu Fudbaler pa je String prazan.
+     * @return prazan String.
+     */
+    
     @Override
     public String koloneZaInsert() {
         return "  ";
     }
+    /**
+     * Vraca String koji sadrzi vrijednost za primarni kljuc klase Igrac. U ovom
+     * slucaju je to identifikator fudbalera.
+     * @return id fudbalera kao String.
+     */
 
     @Override
     public String vrednostZaPrimarniKljuc() {
         return " FudbalerID = " + fudbalerID;
     }
+    /**
+     * Vraca String sa vrijednostima kolona za INSERT upit. U ovom slucaju ne radimo
+     * INSERT pa je prazan String.
+     * @return prazan String.
+     */
 
     @Override
     public String vrednostiZaInsert() {
         return "";
     }
+    /**
+     * Vraca String sa vrijednostima kolona za UPDATE upit. S obzirom da se ne vrsi izmjena
+     * date tabele nikad vrijednost je uvijek prazan String.
+     * @return prazan String.
+     */
 
     @Override
     public String vrednostiZaUpdate() {
         return "  ";
     }
+    /**
+     * Vraca String sa WHERE klauzulom. S obzirom da je za tabelu Fudbaler nije potrebno
+     * koristi WHERE uslov vraca se prazan String.
+     * @return prazan String.
+     */
 
     @Override
     public String uslov() {
