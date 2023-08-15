@@ -66,8 +66,8 @@ public class Igrac extends AbstractDomainObject {
         return " i ";
     }
     /**
-     * Vraca String koji sadrzi JOIN klauzulu. Za klasu igrac vrsimo join po
-     * Tabele Igrac se join-uje preko primarnog kljuca timID i spoljnog kljuca fudbalerID
+     * Vraca String koji sadrzi JOIN klauzulu.
+     * Tabela Igrac se join-uje preko primarnog kljuca timID i spoljnog kljuca fudbalerID
      * @return JOIN klauzula kao String specificna za klasu Igrac kao gore spomenuto.
      */
     @Override
