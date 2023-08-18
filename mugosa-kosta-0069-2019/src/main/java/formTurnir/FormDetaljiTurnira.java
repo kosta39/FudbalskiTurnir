@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package formTurnir;
 
 import domain.Turnir;
@@ -15,13 +10,27 @@ import models.TableModelUtakmice;
 import so.SODeleteTurnir;
 
 /**
- *
+ * Forma za prikazivanje detalja nekog turnira iz tabele za pretragu. Isto tako omogucava i brisanje
+ * turnira.
  * @author Kosta
  */
 public class FormDetaljiTurnira extends javax.swing.JDialog {
-
+	/**
+	 * Turnir ciji se detalji prikazuju.
+	 */
     private Turnir t;
-
+    /**
+     * Konstruktor koji sluzi za kreiranje same forme. Postavlja lokaciju same forme
+     * na ekranu, postavlja naslov i inicijalizuje njene osnovne komponente.
+     * 
+     * Inicijalno popunjava polja samog turnira na osnovu turnira iz parametra konstruktora
+     * i onemogucuje odredjena polja kao sto su datumi odrzavanja turnira ili njegov naziv i na taj nacin
+     * onemogucava izmjenu podataka o turniru koji se vec odrzao.
+     * 
+     * @param parent forma roditelj iz koje se postojeca otvara
+     * @param modal predstavlja modalitet
+     * @param t konkretan turnir ciji se detalji prikazuju
+     */
     public FormDetaljiTurnira(JDialog parent, boolean modal, Turnir t) {
         super(parent, modal);
         initComponents();
@@ -212,11 +221,25 @@ public class FormDetaljiTurnira extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>                        
-
+    /**
+     * Funkcija koja sluzi za otkazivanje prethodno trazenih funkcionalnosti ukoliko
+     * se korisnik odluci da odustane od istih.
+     * 
+     * Forma se automatski zatvara.
+     * 
+     * @param evt event listener
+     */
     private void btnOtkaziActionPerformed(java.awt.event.ActionEvent evt) {                                          
         this.dispose();
     }                                         
-
+    /**
+     * Dugme koje sluzi za brisanje turnira.
+     * Klikom na dugme otvara se dijalog koji pita da li smo sigurni da zelimo da obrisemo turnir
+     * i na osnovu odgovora radi sledece: NE - vraca nas na nazad na formu, DA - brise turnir, refreshuje tabelu
+     * i javlja o uspjesnosti brisanja tima
+     * 
+     * @param evt event listener
+     */
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {                                          
 
         int result = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da zelite da "
