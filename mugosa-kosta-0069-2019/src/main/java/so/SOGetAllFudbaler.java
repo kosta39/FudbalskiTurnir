@@ -23,7 +23,7 @@ public class SOGetAllFudbaler extends AbstractSO {
     private ArrayList<Fudbaler> lista;
     /**
      * Vrsi se validacija za instancu objekta
-     * @throws Exception ukoliko prosledjeni objekat nije instanca klase Administrator
+     * @throws Exception ukoliko prosledjeni objekat nije instanca klase Fudbaler
      */
     @Override
     protected void validate(AbstractDomainObject ado) throws Exception {
