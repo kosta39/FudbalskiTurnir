@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package so;
 
 import db.DBBroker;
@@ -13,11 +8,19 @@ import java.util.ArrayList;
 import so.AbstractSO;
 
 /**
- *
+ * Sistemska operacija kojom se mijenja postojeci tim iz baze podataka, pri cemu se takodje
+ * mijenjaju i njegovi igraci. Nasledjuje apstraktnu klasu AbstractSO pa samim tim
+ * i implementira njene apstraktne metode.
+ * 
  * @author Kosta
  */
 public class SOUpdateTim extends AbstractSO {
-
+	/**
+	 * Vrsi validaciju za tri postavljena uslova.
+	 * @throws Exception ukoliko prosledjeni objekat nije instanca klase Tim,
+	 * 					ukoliko izmijenjeni naziv tima vec postoji kao naziv nekog vec unijetog tima,
+	 * 					ukoliko je novi broj igraca tima manji od pet ili veci od deset.
+	 */
     @Override
     protected void validate(AbstractDomainObject ado) throws Exception {
         if (!(ado instanceof Tim)) {
@@ -41,7 +44,14 @@ public class SOUpdateTim extends AbstractSO {
         }
 
     }
-
+    /**
+     * Poziva se broker baze podataka koji vrsi UPDATE upit pomocu koga se vrsi izmjena
+     * postojeceg tima iz baze podataka.
+     * 
+     * Radi lakse implementacije pri svakoj izmjeni tima poziva se takodje i DELETE upit
+     * pomocu koga se brisu svi igraci tima, nakon cega se mijenja tim da bi se kasnije
+     * pozvao INSERT upit gdje se dodaju igraci tako izmijenjenog tima.
+     */
     @Override
     protected void execute(AbstractDomainObject ado) throws Exception {
         
