@@ -18,6 +18,7 @@ public class SOGetAllAdministrator extends AbstractSO {
 	 */
     private ArrayList<Administrator> lista;
     /**
+     * Vrsi se validacija za instancu objekta
      * @throws Exception ukoliko prosledjeni objekat nije instanca klase Administrator
      */
     @Override
