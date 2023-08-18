@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package so;
 
 import db.DBBroker;
@@ -15,11 +10,21 @@ import java.util.Date;
 import so.AbstractSO;
 
 /**
- *
+ * Sistemska operacija koja sluzi za dodavanje novog turnira u bazu, sto sa sobom
+ * povlaci i dodavanje svih utakmica turnira. Nasledjuje apstraktnu klasu AbstractSO
+ * pa samim tim i implementira njene apstraktne metode.
+ * 
  * @author Kosta
  */
 public class SOAddTurnir extends AbstractSO {
-
+	/**
+	 * Vrsi validaciju za pet postavljenih uslova.
+	 * @throws Exception ukoliko prosledjeni objekat nije instanca klase Turnir,
+	 * 					ukoliko je broj utakmica na turniru manji od dva ili veci od deset,
+	 * 					ukoliko je datum pocetka turnira neki datum posle danasnjeg,
+	 * 					ukoliko je datum pocetka turnira neki datum posle datuma zavrsetka turnira,
+	 * 					ukoliko je datum zavrsetka turnira neki datum posle danasnjeg.
+	 */
     @Override
     protected void validate(AbstractDomainObject ado) throws Exception {
         if (!(ado instanceof Turnir)) {
@@ -45,7 +50,13 @@ public class SOAddTurnir extends AbstractSO {
         }
 
     }
-
+    /**
+     * Poziva se broker baze podataka koji vrsi INSERT upit i koristeci generisane kljuceve
+     * se u bazu dodaje turnir.
+     * 
+     * S obzirom da je Utakmica slab objekat klase Turnir, poziva se INSERT upit za sve utakmice turnira,
+     * koje se takodje dodaju u bazu podataka.
+     */
     @Override
     protected void execute(AbstractDomainObject ado) throws Exception {
         PreparedStatement ps = DBBroker.getInstance().insert(ado);
