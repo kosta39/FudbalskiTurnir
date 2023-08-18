@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package formTim;
 
 import domain.Fudbaler;
@@ -19,7 +14,8 @@ import so.SOGetAllFudbaler;
 import so.SOUpdateTim;
 
 /**
- *
+ * Forma za prikazivanje detalja odredjenog tima iz tabele, pri cemu dozvoljava i 
+ * izmjenu ili brisanje datog tima.
  * @author Kosta
  */
 public class FormDetaljiTima extends javax.swing.JDialog {

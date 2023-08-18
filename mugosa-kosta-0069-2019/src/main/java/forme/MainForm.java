@@ -455,9 +455,9 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton btnDodajTekmu;
     private javax.swing.JButton btnObrisiTekmu;
     private javax.swing.JButton btnSacuvaj;
-    private javax.swing.JComboBox cmbDrugiTim;
+    private javax.swing.JComboBox<Tim> cmbDrugiTim;
     private javax.swing.JComboBox cmbGrad;
-    private javax.swing.JComboBox cmbPrviTim;
+    private javax.swing.JComboBox<Tim> cmbPrviTim;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

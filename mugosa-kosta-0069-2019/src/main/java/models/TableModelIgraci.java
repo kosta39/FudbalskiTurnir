@@ -37,7 +37,9 @@ public class TableModelIgraci extends AbstractTableModel {
     public TableModelIgraci(Tim t) {
         try {
             SOGetAllIgrac so=new SOGetAllIgrac();
-            so.templateExecute(new Igrac());
+            Igrac i=new Igrac();
+            i.setTim(t);
+            so.templateExecute(i);
             lista = so.getLista();
         } catch (Exception ex) {
             Logger.getLogger(TableModelIgraci.class.getName()).log(Level.SEVERE, null, ex);

@@ -31,7 +31,9 @@ public class TableModelUtakmice extends AbstractTableModel {
     public TableModelUtakmice(Turnir t) {
         try {
             SOGetAllUtakmica so=new SOGetAllUtakmica();
-            so.templateExecute(new Utakmica());
+            Utakmica u=new Utakmica();
+            u.setTurnir(t);
+            so.templateExecute(u);
             lista = so.getLista();
         } catch (Exception ex) {
             Logger.getLogger(TableModelUtakmice.class.getName()).log(Level.SEVERE, null, ex);
