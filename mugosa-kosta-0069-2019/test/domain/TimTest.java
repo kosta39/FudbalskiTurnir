@@ -20,7 +20,7 @@ class TimTest extends AbstractDomainObjectTest{
 		ado=null;
 	}
 	@Test
-	void testAdministrator() {
+	void testTim() {
 		ArrayList<Igrac> igraci=new ArrayList<>();
 		Igrac i=new Igrac();
 		igraci.add(i);

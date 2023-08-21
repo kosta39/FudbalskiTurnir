@@ -18,7 +18,7 @@ class IgracTest extends AbstractDomainObjectTest{
 		ado=null;
 	}
 	@Test
-	void testAdministrator() {
+	void testIgrac() {
 		Tim t=new Tim(1l, "Zvezda", null);
 		Fudbaler f=new Fudbaler(1l, "Filip", "Gavranovic", 24);
 		ado = new Igrac(t, 1, "Golman", f);

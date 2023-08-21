@@ -18,7 +18,7 @@ class FudbalerTest extends AbstractDomainObjectTest{
 		ado=null;
 	}
 	@Test
-	void testAdministrator() {
+	void testFudbaler() {
 		ado=new Fudbaler(1l, "Filip", "Gavranovic", 24);
 
 		assertEquals(1l, ((Fudbaler) ado).getFudbalerID());
@@ -45,7 +45,7 @@ class FudbalerTest extends AbstractDomainObjectTest{
 		assertEquals(24, ((Fudbaler) ado).getGodine());
 	}
 	@Test
-	void testAdministratorID() {
+	void testFudbalerID() {
 		((Fudbaler) ado).setFudbalerID(1l);
 
 		assertEquals(1l, ((Fudbaler) ado).getFudbalerID());
