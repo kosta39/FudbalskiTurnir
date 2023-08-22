@@ -40,8 +40,8 @@ class SOGetAllAdministratorTest {
 			assertEquals(2, vraceni.size());
 			assertTrue(vraceni.get(0).getUsername().equalsIgnoreCase("kosta") && 
 					vraceni.get(0).getPassword().equalsIgnoreCase("kosta123"));
-			assertTrue(vraceni.get(1).getUsername().equalsIgnoreCase("savo") && 
-					vraceni.get(1).getPassword().equalsIgnoreCase("savo123"));
+			assertTrue(vraceni.get(1).getUsername().equalsIgnoreCase("aleksandar") && 
+					vraceni.get(1).getPassword().equalsIgnoreCase("aleksandar"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
