@@ -58,7 +58,7 @@ class IgracTest extends AbstractDomainObjectTest{
 	void testNazivTabele() {
 		String s = ado.nazivTabele();
 		
-		assertTrue(s.toLowerCase().contains("Igrac"));
+		assertTrue(s.toLowerCase().contains(" Igrac "));
 	}
 	
 	@Test

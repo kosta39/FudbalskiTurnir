@@ -63,7 +63,7 @@ class FudbalerTest extends AbstractDomainObjectTest{
 	void testNazivTabele() {
 		String s = ado.nazivTabele();
 		
-		assertTrue(s.toLowerCase().contains("Fudbaler"));
+		assertTrue(s.toLowerCase().contains(" Fudbaler "));
 	}
 	
 	@Test
@@ -97,7 +97,7 @@ class FudbalerTest extends AbstractDomainObjectTest{
 	}
 	@Test
 	void testVrednostiZaUpdate() {
-		assertEquals("", ado.vrednostiZaUpdate());
+		assertEquals(" ", ado.vrednostiZaUpdate());
 	}
 	
 	@Test

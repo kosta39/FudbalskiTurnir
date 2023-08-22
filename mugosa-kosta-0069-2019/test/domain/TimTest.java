@@ -66,7 +66,7 @@ class TimTest extends AbstractDomainObjectTest{
 	void testNazivTabele() {
 		String s = ado.nazivTabele();
 		
-		assertTrue(s.toLowerCase().contains("Tim"));
+		assertTrue(s.toLowerCase().contains(" Tim "));
 	}
 	
 	@Test

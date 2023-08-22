@@ -111,7 +111,7 @@ class TurnirTest extends AbstractDomainObjectTest{
 	void testNazivTabele() {
 		String s = ado.nazivTabele();
 		
-		assertTrue(s.toLowerCase().contains("Turnir"));
+		assertTrue(s.toLowerCase().contains(" Turnir "));
 	}
 	
 	@Test

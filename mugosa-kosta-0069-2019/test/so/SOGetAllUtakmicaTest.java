@@ -66,8 +66,10 @@ class SOGetAllUtakmicaTest {
 			u1.setTurnir(t3);
 			u1.setRbUtakmice(2);
 			utakmice.add(u6);
-
-			assertEquals(6, so.getLista().size());
+			
+			ArrayList<Utakmica> u=so.getLista();
+			
+			assertEquals(6, u.size());
 			assertTrue(utakmice.get(0).getRbUtakmice()==1 && 
 					utakmice.get(0).getTurnir().equals(so.getLista().get(0).getTurnir()));
 			assertTrue(utakmice.get(1).getRbUtakmice()==2 && 
