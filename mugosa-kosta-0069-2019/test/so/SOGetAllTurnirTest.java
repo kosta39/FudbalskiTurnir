@@ -32,9 +32,10 @@ class SOGetAllTurnirTest {
 	void testNeuspesnaValidacijaNullKlasa() {
 		assertThrows(Exception.class, () -> so.templateExecute(null));
 	}
+	@Test
 	void testUspesnoVracenaListaTurnira() {
 		try {
-			so.templateExecute(new Tim());
+			so.templateExecute(new Turnir());
 			ArrayList<Turnir> vraceni = so.getLista();
 
 			assertEquals(3, vraceni.size());

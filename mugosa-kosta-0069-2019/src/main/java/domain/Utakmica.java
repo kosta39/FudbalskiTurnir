@@ -116,7 +116,7 @@ public class Utakmica extends AbstractDomainObject {
                     rs.getString("Ime"), rs.getString("Prezime"),
                     rs.getString("Username"), rs.getString("Password"));
 
-            Turnir t = new Turnir(rs.getLong("turnirID"), rs.getString("nazivTurnira"),
+            Turnir t = new Turnir(rs.getLong("TurnirID"), rs.getString("nazivTurnira"),
                     rs.getDate("datumOd"), rs.getDate("datumDo"), rs.getString("grad"), a, null);
 
             Tim prviTim = new Tim(rs.getLong("prviTim.TimID"), rs.getString("prviTim.NazivTima"), null);

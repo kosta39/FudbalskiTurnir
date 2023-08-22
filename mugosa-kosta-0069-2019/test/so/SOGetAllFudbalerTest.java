@@ -32,7 +32,7 @@ class SOGetAllFudbalerTest {
 		assertThrows(Exception.class, () -> so.templateExecute(null));
 	}
 	@Test
-	void testUspesnoVracenaListaTrenera() {
+	void testUspesnoVracenaListaFudbalera() {
 		try {
 			so.templateExecute(new Fudbaler());
 			ArrayList<Fudbaler> vraceni = so.getLista();

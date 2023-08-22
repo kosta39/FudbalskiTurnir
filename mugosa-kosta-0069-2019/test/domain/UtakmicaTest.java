@@ -91,7 +91,7 @@ class UtakmicaTest extends AbstractDomainObjectTest{
 	void testNazivTabele() {
 		String s = ado.nazivTabele();
 		
-		assertTrue(s.toLowerCase().contains(" Utakmica "));
+		assertTrue(s.toLowerCase().contains(" utakmica "));
 	}
 	
 	@Test

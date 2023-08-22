@@ -3,6 +3,7 @@ package domain;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Predstavlja tim koji ucestvuje na turniru. Ima identifikator, naziv i listu svojih igraca.
@@ -187,6 +188,14 @@ public class Tim extends AbstractDomainObject {
     private int dozvoljenBrojIgraca;
 	public void setDozvoljenBrojIgraca(int dozvoljenBrojIgraca) {
 		this.dozvoljenBrojIgraca = dozvoljenBrojIgraca;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if(this==obj) return true;
+		if(obj==null) return false;
+		if(getClass()!=obj.getClass()) return false;
+		Tim other=(Tim) obj;
+		return Objects.equals(nazivTima, other.nazivTima);
 	}
     
 }

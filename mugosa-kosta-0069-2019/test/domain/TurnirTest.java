@@ -111,7 +111,7 @@ class TurnirTest extends AbstractDomainObjectTest{
 	void testNazivTabele() {
 		String s = ado.nazivTabele();
 		
-		assertTrue(s.toLowerCase().contains(" Turnir "));
+		assertTrue(s.toLowerCase().contains(" turnir "));
 	}
 	
 	@Test
@@ -154,13 +154,15 @@ class TurnirTest extends AbstractDomainObjectTest{
 		}
 		Administrator a=new Administrator(1l, "Kosta", "Mugosa", "kosta", "kosta123");
 		((Turnir) ado).setAdministrator(a);
+		((Turnir) ado).setDatumOd(d1);
+		((Turnir) ado).setDatumDo(d2);
 		String s = ado.vrednostiZaInsert();
 		
 		assertTrue(s.contains("Beograd"));
 		assertTrue(s.contains("Letnji turnir"));
 		assertTrue(s.contains("2023-06-25"));	
 		assertTrue(s.contains("2023-06-30"));
-		assertTrue(s.contains("Kosta Mugosa"));
+		assertTrue(s.contains("1"));
 	}
 	@Test
 	void testVrednostiZaUpdate() {
