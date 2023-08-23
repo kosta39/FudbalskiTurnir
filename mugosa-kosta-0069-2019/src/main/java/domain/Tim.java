@@ -185,10 +185,7 @@ public class Tim extends AbstractDomainObject {
     public void setIgraci(ArrayList<Igrac> igraci) {
         this.igraci = igraci;
     }
-    private int dozvoljenBrojIgraca;
-	public void setDozvoljenBrojIgraca(int dozvoljenBrojIgraca) {
-		this.dozvoljenBrojIgraca = dozvoljenBrojIgraca;
-	}
+    
 	@Override
 	public boolean equals(Object obj) {
 		if(this==obj) return true;

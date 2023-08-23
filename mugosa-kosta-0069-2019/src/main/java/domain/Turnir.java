@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * Predstavlja turnir koji se igra. Ima id, nativ, datum pocetka i kraja, grad
@@ -268,5 +269,13 @@ public class Turnir extends AbstractDomainObject {
     public void setUtakmice(ArrayList<Utakmica> utakmice) {
         this.utakmice = utakmice;
     }
+    @Override
+	public boolean equals(Object obj) {
+		if(this==obj) return true;
+		if(obj==null) return false;
+		if(getClass()!=obj.getClass()) return false;
+		Turnir other=(Turnir) obj;
+		return Objects.equals(nazivTurnira, other.nazivTurnira);
+	}
 
 }
