@@ -1,6 +1,8 @@
 package forme;
 
 import domain.Administrator;
+import domain.Turnir;
+
 import javax.swing.JOptionPane;
 import so.SOLogin;
 

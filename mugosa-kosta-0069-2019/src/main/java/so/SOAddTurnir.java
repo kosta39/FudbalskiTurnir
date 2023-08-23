@@ -4,9 +4,15 @@ import db.DBBroker;
 import domain.AbstractDomainObject;
 import domain.Turnir;
 import domain.Utakmica;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Date;
+
+import com.google.gson.Gson;
+
 import so.AbstractSO;
 
 /**
@@ -74,5 +80,20 @@ public class SOAddTurnir extends AbstractSO {
         }
 
     }
+    public String serijalizujJSON(Turnir turnir){
+		String json = "";
+		
+		try(FileWriter out = new FileWriter("src/test/resources/clan.json")){
+			Gson gson = new Gson();
+			
+			json = gson.toJson(turnir);
+			
+			out.write(json);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return json;
+	}
 
 }

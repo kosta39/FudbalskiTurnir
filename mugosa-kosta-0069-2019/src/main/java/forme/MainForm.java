@@ -7,11 +7,17 @@ import domain.Administrator;
 import domain.Tim;
 import domain.Turnir;
 import domain.Utakmica;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import models.TableModelUtakmice;
 import so.SOAddTurnir;
@@ -82,6 +88,7 @@ public class MainForm extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUtakmice = new javax.swing.JTable();
         btnSacuvaj = new javax.swing.JButton();
+        btnSerijalizuj = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu6 = new javax.swing.JMenu();
         miNoviTim = new javax.swing.JMenuItem();
@@ -225,6 +232,8 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        btnSerijalizuj.setText("Serijalizuj");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -251,7 +260,9 @@ public class MainForm extends javax.swing.JFrame {
                                     .addComponent(cmbGrad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap())))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(307, 307, 307)
+                .addGap(62, 62, 62)
+                .addComponent(btnSerijalizuj)
+                .addGap(170, 170, 170)
                 .addComponent(btnSacuvaj, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -277,7 +288,9 @@ public class MainForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSacuvaj, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSacuvaj, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                    .addComponent(btnSerijalizuj))
                 .addGap(12, 12, 12))
         );
 
@@ -528,6 +541,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtGoloviDrugi;
     private javax.swing.JFormattedTextField txtGoloviPrvi;
     private javax.swing.JTextField txtNazivTurnira;
+    private JButton btnSerijalizuj;
     // End of variables declaration                   
     /**
      * Vrsi se pozivanje sistemske operacije za ucitavanje svih timova iz baze u
@@ -563,5 +577,40 @@ public class MainForm extends javax.swing.JFrame {
         txtDatumDo.setText("");
         tblUtakmice.setModel(new TableModelUtakmice());
     }
+    private JButton getBtnSerijalizuj() {
+		if (btnSerijalizuj == null) {
+			btnSerijalizuj = new JButton("Serijalizuj clana");
+			btnSerijalizuj.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if (txtNazivTurnira.getText().isEmpty() || txtDatumOd.getText().isEmpty()
+		                    || txtDatumDo.getText().isEmpty()
+		                    || txtGoloviPrvi.getText().isEmpty()
+		                    || txtGoloviDrugi.getText().isEmpty()) {
+		                //JOptionPane.showMessageDialog(this, "Sva polja moraju biti popunjena!", "Upozorenje", JOptionPane.WARNING_MESSAGE);
+		                return;
+		            }
 
+		            String naziv = txtNazivTurnira.getText();
+		            
+		            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+		            Date datumPocetka = null;
+		            Date datumZavrsteka=null;
+					try {
+						datumPocetka=sdf.parse(txtDatumOd.getText());
+						datumZavrsteka=sdf.parse(txtDatumDo.getText());
+					} catch (ParseException e1) {
+						e1.printStackTrace();
+					}
+		           
+		            String grad = (String) cmbGrad.getSelectedItem();
+		            ArrayList<Utakmica> utakmice=new ArrayList<>();
+		            Turnir t=new Turnir(null, naziv, datumPocetka, datumZavrsteka, grad, ulogovani, utakmice);
+		            
+		            (new SOAddTurnir()).serijalizujJSON(t);
+		            System.out.println("Uspesno serijalizovan turnir.");
+				}
+			});
+		}
+		return btnSerijalizuj;
+	}
 }

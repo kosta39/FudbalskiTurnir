@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Predstavlja tim koji ucestvuje na turniru. Ima identifikator, naziv i listu svojih igraca.
  * 
@@ -21,6 +23,7 @@ public class Tim extends AbstractDomainObject {
     /**
      * Naziv tima kao String
      */
+
     private String nazivTima;
     /**
      * Igraci tima kao lista

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Predstavlja turnir koji se igra. Ima id, nativ, datum pocetka i kraja, grad
  * u kojem se odrzava, administratora turnira i listu utakmica.
@@ -22,27 +24,31 @@ public class Turnir extends AbstractDomainObject {
     /**
      * Naziv turnira kao String.
      */
+    @SerializedName("Turnir")
     private String nazivTurnira;
     /**
      * Datum pocetka turnira kao Date.
      */
+    @SerializedName("Datum pocetka")
     private Date datumOd;
     /**
      * Datum zavrsetka turnira kao Date.
      */
+    @SerializedName("Datum zavrsetka")
     private Date datumDo;
     /**
      * Grad u kome se odrzava turnir kao String.
      */
+    @SerializedName("Grad odrzavanja")
     private String grad;
     /**
      * Administrator koji je zaduzen za turnir kao instanca klase Administrator
      */
-    private Administrator administrator;
+    private transient Administrator administrator;
     /**
      * Lista utakmica koje se odrzavaju na turniru.
      */
-    private ArrayList<Utakmica> utakmice;
+    private transient ArrayList<Utakmica> utakmice;
     /**
      * Parametrizovani konstruktor koji postavlja vrijednost atributa turnira na
      * one koji su dati kao parametri.
