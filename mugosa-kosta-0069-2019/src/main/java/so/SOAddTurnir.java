@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.util.Date;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import so.AbstractSO;
 
@@ -80,20 +81,22 @@ public class SOAddTurnir extends AbstractSO {
         }
 
     }
+    /**
+     * Sluzi za serijalizaciju novog turnira u JSON format.
+     * @param turnir turnir koji se prosledjuje za serijalizaciju
+     */
     public String serijalizujJSON(Turnir turnir){
-		String json = "";
-		
-		try(FileWriter out = new FileWriter("src/test/resources/clan.json")){
-			Gson gson = new Gson();
+		String povracaj="";
+		try(FileWriter out = new FileWriter("turnir.json")){
 			
-			json = gson.toJson(turnir);
-			
-			out.write(json);
+			Gson gson = new GsonBuilder().create();
+			povracaj=gson.toJson(turnir);
+			out.write(gson.toJson(turnir));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		return json;
+		System.out.println(povracaj);
+		return povracaj;
 	}
 
 }

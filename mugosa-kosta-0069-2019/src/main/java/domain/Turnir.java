@@ -275,6 +275,11 @@ public class Turnir extends AbstractDomainObject {
     public void setUtakmice(ArrayList<Utakmica> utakmice) {
         this.utakmice = utakmice;
     }
+    /**
+     * Koristi se za poredjenje dva turnira na osnovu njihovih imena.
+     * @param obj drugi turnir
+     * @return true ako su imena turnira ista, false ako se imena turnira razlikuju
+     */
     @Override
 	public boolean equals(Object obj) {
 		if(this==obj) return true;

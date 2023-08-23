@@ -357,4 +357,44 @@ class SOAddTurnirTest {
 		tur.setUtakmice(utakmice);
 		assertThrows(Exception.class, ()->so.templateExecute(tur));
 	}
+	@Test
+	void testUspesnoIzvrsenaSerijalizacija() {
+		Turnir tur=new Turnir();
+		tur.setTurnirID(100l);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+		Date d1=null;
+		Date d2=null;
+		try {
+			d1=sdf.parse("12.08.2012");
+			d2=sdf.parse("23.08.2012");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		Administrator a=new Administrator();
+		a.setAdministratorID(1l);
+		SOGetAllTim tims=new SOGetAllTim();
+		try {
+			tims.templateExecute(new Tim());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<Tim> timovi=tims.getLista();
+		Tim t3=timovi.get(0);
+		Tim t4=timovi.get(1);
+		ArrayList<Utakmica> utakmice=new ArrayList<>();
+		Utakmica u1=new Utakmica(tur, 1, 3, 1, "Zvezda", t3, t4);
+		Utakmica u2=new Utakmica(tur, 2, 4, 0, "Partizan", t4, t3);
+		utakmice.add(u1);
+		utakmice.add(u2);
+		tur.setAdministrator(a);
+		tur.setDatumDo(d2);
+		tur.setDatumOd(d1);
+		tur.setGrad("Uzice");
+		tur.setNazivTurnira("Vocni turnir");
+		tur.setUtakmice(utakmice);
+		String s="{\"turnirID\":100,\"Turnir\":\"Vocni turnir\",\"Datum pocetka\":\"Aug 12, 2012, 12:00:00 AM\",\"Datum zavrsetka\":\"Aug 23, 2012, 12:00:00 AM\",\"Grad odrzavanja\":\"Uzice\"}";
+		System.out.println(s);
+		assertEquals(s,so.serijalizujJSON(tur));
+	}
 }

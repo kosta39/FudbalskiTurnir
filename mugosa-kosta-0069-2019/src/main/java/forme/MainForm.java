@@ -223,6 +223,11 @@ public class MainForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+        btnSerijalizuj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSerijalizujActionPerformed(evt);
+            }
+        });
 
         btnSacuvaj.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         btnSacuvaj.setText("Sacuvaj turnir");
@@ -506,7 +511,41 @@ public class MainForm extends javax.swing.JFrame {
 //            Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }                                          
+    }   
+    /**
+     * Dugme koje sluzi za serijalizaciju novog turnira u json dokument, gdje se u njoj
+     * provjeravaju odredjena granicenja i kreira sam objekat turnira sa forme koji se 
+     * serijalizuje.
+     * @param evt event listener.
+     */
+    private void btnSerijalizujActionPerformed(java.awt.event.ActionEvent evt) {
+		if (txtNazivTurnira.getText().isEmpty() || txtDatumOd.getText().isEmpty()
+                || txtDatumDo.getText().isEmpty()
+                || txtGoloviPrvi.getText().isEmpty()
+                || txtGoloviDrugi.getText().isEmpty()) {
+            //JOptionPane.showMessageDialog(this, "Sva polja moraju biti popunjena!", "Upozorenje", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String naziv = txtNazivTurnira.getText();
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        Date datumPocetka = null;
+        Date datumZavrsteka=null;
+		try {
+			datumPocetka=sdf.parse(txtDatumOd.getText());
+			datumZavrsteka=sdf.parse(txtDatumDo.getText());
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+       
+        String grad = (String) cmbGrad.getSelectedItem();
+        ArrayList<Utakmica> utakmice=new ArrayList<>();
+        Turnir t=new Turnir(null, naziv, datumPocetka, datumZavrsteka, grad, ulogovani, utakmice);
+        //System.out.println(t.getNazivTurnira());
+        (new SOAddTurnir()).serijalizujJSON(t);
+        System.out.println("Turnir serijalizovan.");
+	}
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton btnDodajTekmu;
@@ -577,40 +616,4 @@ public class MainForm extends javax.swing.JFrame {
         txtDatumDo.setText("");
         tblUtakmice.setModel(new TableModelUtakmice());
     }
-    private JButton getBtnSerijalizuj() {
-		if (btnSerijalizuj == null) {
-			btnSerijalizuj = new JButton("Serijalizuj clana");
-			btnSerijalizuj.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					if (txtNazivTurnira.getText().isEmpty() || txtDatumOd.getText().isEmpty()
-		                    || txtDatumDo.getText().isEmpty()
-		                    || txtGoloviPrvi.getText().isEmpty()
-		                    || txtGoloviDrugi.getText().isEmpty()) {
-		                //JOptionPane.showMessageDialog(this, "Sva polja moraju biti popunjena!", "Upozorenje", JOptionPane.WARNING_MESSAGE);
-		                return;
-		            }
-
-		            String naziv = txtNazivTurnira.getText();
-		            
-		            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-		            Date datumPocetka = null;
-		            Date datumZavrsteka=null;
-					try {
-						datumPocetka=sdf.parse(txtDatumOd.getText());
-						datumZavrsteka=sdf.parse(txtDatumDo.getText());
-					} catch (ParseException e1) {
-						e1.printStackTrace();
-					}
-		           
-		            String grad = (String) cmbGrad.getSelectedItem();
-		            ArrayList<Utakmica> utakmice=new ArrayList<>();
-		            Turnir t=new Turnir(null, naziv, datumPocetka, datumZavrsteka, grad, ulogovani, utakmice);
-		            
-		            (new SOAddTurnir()).serijalizujJSON(t);
-		            System.out.println("Uspesno serijalizovan turnir.");
-				}
-			});
-		}
-		return btnSerijalizuj;
-	}
 }

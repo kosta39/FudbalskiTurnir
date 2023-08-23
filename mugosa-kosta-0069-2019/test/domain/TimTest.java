@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class TimTest extends AbstractDomainObjectTest{
 
@@ -115,5 +117,30 @@ class TimTest extends AbstractDomainObjectTest{
 	void testUslov() {
 		assertEquals("", ado.uslov());
 	}
-
+	@ParameterizedTest
+	@CsvSource({
+		"Ime, Ime, true",
+		"Ime, Prezime, false"
+	})
+	void testEqualsIsti(String ime1,String ime2,boolean isti) {
+		Turnir t1=new Turnir();
+		t1.setNazivTurnira(ime1);
+		Turnir t2=new Turnir();
+		t2.setNazivTurnira(ime2);
+		assertEquals(isti, t1.equals(t2));
+	}
+	@Test
+	void testEqualsNull() {
+		assertFalse(ado.equals(null));
+	}
+	
+	@Test
+	void testEqualsIsti() {
+		assertTrue(ado.equals(ado));
+	}
+	
+	@Test
+	void testEqualsDrugaKlasa() {
+		assertFalse(ado.equals(new Exception()));
+	}
 }

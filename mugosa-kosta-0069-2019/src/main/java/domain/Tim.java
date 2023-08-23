@@ -189,6 +189,11 @@ public class Tim extends AbstractDomainObject {
         this.igraci = igraci;
     }
     
+    /**
+     * Koristi se za poredjenje dva tima na osnovu njihovih imena.
+     * @param obj drugi tim
+     * @return true ako su imena timova ista, false ako se imena timova razlikuju
+     */
 	@Override
 	public boolean equals(Object obj) {
 		if(this==obj) return true;
