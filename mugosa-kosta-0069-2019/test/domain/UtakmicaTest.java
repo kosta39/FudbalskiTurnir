@@ -23,17 +23,17 @@ class UtakmicaTest extends AbstractDomainObjectTest{
 		t.setTurnirID(1l);
 		Tim t1=new Tim();
 		t1.setTimID(2l);
-		t1.setNazivTima("Zvezda");
+		t1.setNazivTima("Inter");
 		Tim t2=new Tim();
 		t2.setTimID(3l);
-		t2.setNazivTima("Partizan");
-		ado = new Utakmica(t, 1, 3, 0, "Zvezda", t1, t2);
+		t2.setNazivTima("Barcelona");
+		ado = new Utakmica(t, 1, 3, 0, "Inter", t1, t2);
 
 		assertEquals(t, ((Utakmica) ado).getTurnir());
 		assertEquals(1, ((Utakmica) ado).getRbUtakmice());
 		assertEquals(3, ((Utakmica) ado).getBrojGolovaPrvi());
 		assertEquals(0, ((Utakmica) ado).getBrojGolovaDrugi());
-		assertEquals("Zvezda", ((Utakmica) ado).getPobednik());
+		assertEquals("Inter", ((Utakmica) ado).getPobednik());
 		assertEquals(t1, ((Utakmica) ado).getPrviTim());
 		assertEquals(t2, ((Utakmica) ado).getDrugiTim());
 	}
@@ -73,7 +73,7 @@ class UtakmicaTest extends AbstractDomainObjectTest{
 	void testPrviTim() {
 		Tim t1=new Tim();
 		t1.setTimID(2l);
-		t1.setNazivTima("Zvezda");
+		t1.setNazivTima("Inter");
 		((Utakmica) ado).setPrviTim(t1);
 
 		assertEquals(t1, ((Utakmica) ado).getPrviTim());
@@ -82,7 +82,7 @@ class UtakmicaTest extends AbstractDomainObjectTest{
 	void testDrugiTim() {
 		Tim t2=new Tim();
 		t2.setTimID(3l);
-		t2.setNazivTima("Partizan");
+		t2.setNazivTima("Barcelona");
 		((Utakmica) ado).setDrugiTim(t2);
 
 		assertEquals(t2, ((Utakmica) ado).getDrugiTim());
@@ -130,15 +130,15 @@ class UtakmicaTest extends AbstractDomainObjectTest{
 		((Utakmica) ado).setRbUtakmice(4);
 		((Utakmica) ado).setBrojGolovaPrvi(5);
 		((Utakmica) ado).setBrojGolovaDrugi(0);
-		((Utakmica) ado).setPobednik("Zvezda");
+		((Utakmica) ado).setPobednik("Inter");
 		Turnir t=new Turnir();
 		t.setTurnirID(1l);
 		Tim t1=new Tim();
 		t1.setTimID(2l);
-		t1.setNazivTima("Zvezda");
+		t1.setNazivTima("Inter");
 		Tim t2=new Tim();
 		t2.setTimID(3l);
-		t2.setNazivTima("Partizan");
+		t2.setNazivTima("Barcelona");
 		((Utakmica) ado).setTurnir(t);
 		((Utakmica) ado).setPrviTim(t1);
 		((Utakmica) ado).setDrugiTim(t2);
@@ -151,7 +151,7 @@ class UtakmicaTest extends AbstractDomainObjectTest{
 		assertTrue(s.contains("4"));
 		assertTrue(s.contains("5"));
 		assertTrue(s.contains("0"));
-		assertTrue(s.contains("Zvezda"));
+		assertTrue(s.contains("Inter"));
 	}
 	@Test
 	void testVrednostiZaUpdate() {

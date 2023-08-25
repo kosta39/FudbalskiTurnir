@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import so.SOGetAllTim;
+
 class TimTest extends AbstractDomainObjectTest{
 
 	@BeforeEach
@@ -34,18 +36,82 @@ class TimTest extends AbstractDomainObjectTest{
 	}
 	@Test
 	void testNaziv() {
-		((Tim) ado).setNazivTima("Zvezda");;
+		((Tim) ado).setNazivTima("Inter");
 
-		assertEquals("Zvezda", ((Tim) ado).getNazivTima());
+		assertEquals("Inter", ((Tim) ado).getNazivTima());
+	}
+	@Test
+	void testNazivVecPostoji() {
+		SOGetAllTim pom=new SOGetAllTim();
+		try {
+			pom.templateExecute(new Tim());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<Tim> timovi=pom.getLista();
+		Tim t=timovi.get(0);
+		assertThrows(IllegalArgumentException.class,
+				() ->  ((Tim)ado).setNazivTima(t.getNazivTima()) );
 	}
 	@Test
 	void testIgraci() {
 		ArrayList<Igrac> igraci=new ArrayList<>();
 		Igrac i=new Igrac();
+		Igrac i1=new Igrac();
+		Igrac i2=new Igrac();
+		Igrac i3=new Igrac();
+		Igrac i4=new Igrac();
 		igraci.add(i);
+		igraci.add(i1);
+		igraci.add(i2);
+		igraci.add(i3);
+		igraci.add(i4);
 		((Tim) ado).setIgraci(igraci);
 
 		assertEquals(igraci, ((Tim) ado).getIgraci());
+	}
+	@Test
+	void testBrojIgracaManjeOdPet() {
+		ArrayList<Igrac> igraci=new ArrayList<>();
+		Igrac i1=new Igrac();
+		Igrac i2=new Igrac();
+		Igrac i3=new Igrac();
+		Igrac i4=new Igrac();
+		igraci.add(i1);
+		igraci.add(i2);
+		igraci.add(i3);
+		igraci.add(i4);
+		assertThrows(IllegalArgumentException.class,
+				() ->  ((Tim)ado).setIgraci(igraci) );
+	}
+	@Test
+	void testBrojIgracaViseOd10() {
+		ArrayList<Igrac> igraci=new ArrayList<>();
+		Igrac i1=new Igrac();
+		Igrac i2=new Igrac();
+		Igrac i3=new Igrac();
+		Igrac i4=new Igrac();
+		Igrac i5=new Igrac();
+		Igrac i6=new Igrac();
+		Igrac i7=new Igrac();
+		Igrac i8=new Igrac();
+		Igrac i9=new Igrac();
+		Igrac i10=new Igrac();
+		Igrac i11=new Igrac();
+		igraci.add(i1);
+		igraci.add(i2);
+		igraci.add(i3);
+		igraci.add(i4);
+		igraci.add(i5);
+		igraci.add(i6);
+		igraci.add(i7);
+		igraci.add(i8);
+		igraci.add(i9);
+		igraci.add(i10);
+		igraci.add(i11);
+		assertThrows(IllegalArgumentException.class,
+				() ->  ((Tim)ado).setIgraci(igraci) );
 	}
 	@Test
 	void testTimID() {
@@ -98,19 +164,19 @@ class TimTest extends AbstractDomainObjectTest{
 
 	@Test
 	void testVrednostiZaInsert() {
-		((Tim) ado).setNazivTima("Zvezda");
+		((Tim) ado).setNazivTima("Inter");
 
 		String s = ado.vrednostiZaInsert();
 		
-		assertTrue(s.contains("Zvezda"));
+		assertTrue(s.contains("Inter"));
 	}
 	@Test
 	void testVrednostiZaUpdate() {
-		((Tim) ado).setNazivTima("Zvezda");
+		((Tim) ado).setNazivTima("Inter");
 
 		String s = ado.vrednostiZaUpdate();
 		
-		assertTrue(s.contains("Zvezda"));
+		assertTrue(s.contains("Inter"));
 	}
 	
 	@Test

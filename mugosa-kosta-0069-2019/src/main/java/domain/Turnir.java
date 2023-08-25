@@ -2,6 +2,8 @@ package domain;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
@@ -217,6 +219,8 @@ public class Turnir extends AbstractDomainObject {
      * @param datumOd nova vrijednost za datum pocetka turnira.
      */
     public void setDatumOd(Date datumOd) {
+    	Date date=new Date();
+    	if(datumOd.compareTo(date)>0) throw new IllegalArgumentException("Datum od mora biti pre danasnjeg datuma!");
         this.datumOd = datumOd;
     }
     /**
@@ -231,6 +235,8 @@ public class Turnir extends AbstractDomainObject {
      * @param datumDo nova vrijednost za datum zavrsetka turnira.
      */
     public void setDatumDo(Date datumDo) {
+    	Date date=new Date();
+    	if(datumDo.compareTo(date)>0) throw new IllegalArgumentException("Datum do mora biti pre danasnjeg datuma!");
         this.datumDo = datumDo;
     }
     /**
@@ -271,8 +277,10 @@ public class Turnir extends AbstractDomainObject {
     /**
      * Postavlja vrijednost za listu utakmica odigranih na turniru.
      * @param utakmice nova vrijednost za listu utakmica odigranih na turniru.
+     * @throws IllegalArgumentException ako lista utakmica koja se unosi ima manje od 2 ili vise od 10 utakmica.
      */
     public void setUtakmice(ArrayList<Utakmica> utakmice) {
+    	if(utakmice.size()<2 || utakmice.size()>10) throw new IllegalArgumentException("Turnir mora imati izmedju 2 i 10 utakmica!");
         this.utakmice = utakmice;
     }
     /**

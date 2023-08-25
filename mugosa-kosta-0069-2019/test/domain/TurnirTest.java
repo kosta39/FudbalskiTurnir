@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.jupiter.api.AfterEach;
@@ -69,6 +70,22 @@ class TurnirTest extends AbstractDomainObjectTest{
 		assertEquals(d, ((Turnir) ado).getDatumOd());
 	}
 	@Test
+	void testDatumOdPosleDanasnjeg() {
+		Calendar cal=Calendar.getInstance();
+		cal.set(2024, 1, 1);
+		Date d=cal.getTime();
+		assertThrows(IllegalArgumentException.class,
+				() -> ((Turnir)ado).setDatumOd(d)  );
+	}
+	@Test
+	void testDatumDoPosleDanasnjeg() {
+		Calendar cal=Calendar.getInstance();
+		cal.set(2024, 1, 1);
+		Date d=cal.getTime();
+		assertThrows(IllegalArgumentException.class,
+				() -> ((Turnir)ado).setDatumDo(d)  );
+	}
+	@Test
 	void testDatumDo() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 		Date d=null;
@@ -104,10 +121,49 @@ class TurnirTest extends AbstractDomainObjectTest{
 	void testUtakmice() {
 		ArrayList<Utakmica> utakmice=new ArrayList<>();
 		Utakmica u=new Utakmica();
+		Utakmica u1=new Utakmica();
 		utakmice.add(u);
+		utakmice.add(u1);
 		((Turnir) ado).setUtakmice(utakmice);
 
 		assertEquals(utakmice, ((Turnir) ado).getUtakmice());
+	}
+	@Test
+	void testUtakmiceManjeOdDvije() {
+		ArrayList<Utakmica> utakmice=new ArrayList<>();
+		Utakmica u=new Utakmica();
+		utakmice.add(u);
+
+		assertThrows(IllegalArgumentException.class,
+				() -> ((Turnir) ado).setUtakmice(utakmice)  );
+	}
+	@Test
+	void testUtakmiceViseOdDeset() {
+		ArrayList<Utakmica> utakmice=new ArrayList<>();
+		Utakmica u=new Utakmica();
+		Utakmica u1=new Utakmica();
+		Utakmica u2=new Utakmica();
+		Utakmica u3=new Utakmica();
+		Utakmica u4=new Utakmica();
+		Utakmica u5=new Utakmica();
+		Utakmica u6=new Utakmica();
+		Utakmica u7=new Utakmica();
+		Utakmica u8=new Utakmica();
+		Utakmica u9=new Utakmica();
+		Utakmica u10=new Utakmica();
+		utakmice.add(u);
+		utakmice.add(u1);
+		utakmice.add(u2);
+		utakmice.add(u3);
+		utakmice.add(u4);
+		utakmice.add(u5);
+		utakmice.add(u6);
+		utakmice.add(u7);
+		utakmice.add(u8);
+		utakmice.add(u9);
+		utakmice.add(u10);
+		assertThrows(IllegalArgumentException.class,
+				() -> ((Turnir) ado).setUtakmice(utakmice)  );
 	}
 	@Test
 	void testNazivTabele() {

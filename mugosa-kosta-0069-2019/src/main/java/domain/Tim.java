@@ -7,6 +7,8 @@ import java.util.Objects;
 
 import com.google.gson.annotations.SerializedName;
 
+import so.SOGetAllTim;
+
 /**
  * Predstavlja tim koji ucestvuje na turniru. Ima identifikator, naziv i listu svojih igraca.
  * 
@@ -170,8 +172,20 @@ public class Tim extends AbstractDomainObject {
     /**
      * Postavlja vrijednost za naziv tima.
      * @param nazivTima nova vrijednost za naziv tima.
+     * @throws IllegalArgumentException ako novo ime tima vec postoji kao ime nekog drugog tima u bazi
      */
     public void setNazivTima(String nazivTima) {
+    	SOGetAllTim pom=new SOGetAllTim();
+    	try {
+			pom.templateExecute(new Tim());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	ArrayList<Tim> timovi=pom.getLista();
+    	for(Tim t:timovi) {
+    		if(t.getNazivTima().equals(nazivTima)) throw new IllegalArgumentException("Vec postoji tim s tim nazivom!");
+    	}
         this.nazivTima = nazivTima;
     }
     /**
@@ -184,8 +198,10 @@ public class Tim extends AbstractDomainObject {
     /**
      * Postavlja listu igraca tima.
      * @param igraci nova vrijednost za listu igraca tima.
+     * @throws IllegalArgumentException ako lista igraca koja se unosti ima manje od 5 ili vise od 10 igraca
      */
     public void setIgraci(ArrayList<Igrac> igraci) {
+    	if(igraci.size()<5 || igraci.size()>10) throw new IllegalArgumentException("Tim mora da ima izmedju 5 i 10 igraca!");
         this.igraci = igraci;
     }
     

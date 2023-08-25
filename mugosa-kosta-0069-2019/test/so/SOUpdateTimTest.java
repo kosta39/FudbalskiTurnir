@@ -27,7 +27,7 @@ class SOUpdateTimTest {
 	@Test
 	void testTimUspesnoIzmenjen() {
 		Tim t=new Tim();
-		t.setNazivTima("Rudar");
+		t.setNazivTima("Inter");
 		Fudbaler f1=new Fudbaler(8l, "Raul", "Entrerrios", 21);
 		Fudbaler f2=new Fudbaler(40l, "Andres", "Iniesta", 41);
 		Fudbaler f3=new Fudbaler(39l, "Pablo", "Gavi", 19);
@@ -101,7 +101,7 @@ class SOUpdateTimTest {
 	void testNeuspesnaValidacijaNullKlasa() {
 		assertThrows(Exception.class, () -> so.templateExecute(null));
 	}
-	@Test
+	/*@Test
 	void testNedozvoljenBrojIgracaJedanaest() {
 		Tim t=new Tim();
 		t.setNazivTima("Rudar");
@@ -242,4 +242,5 @@ class SOUpdateTimTest {
 			e.printStackTrace();
 		}
 	}
+	*/
 }

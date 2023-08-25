@@ -123,6 +123,7 @@ class SOAddTimTest {
 		t.setIgraci(igraci);
 		assertThrows(Exception.class, ()->so.templateExecute(t));
 	}
+	/*
 	@Test
 	void testNedozvoljenBrojIgracaCetiri() {
 		Tim t=new Tim();
@@ -223,4 +224,5 @@ class SOAddTimTest {
 			e.printStackTrace();
 		}
 	}
+	*/
 }
